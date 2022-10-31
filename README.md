@@ -1,1 +1,56 @@
-# psr3-logger
+# Package for sending log messages to RoadRunner
+
+## Requirements
+
+Make sure that your server is configured with following PHP version and extensions:
+
+- PHP 8.1+
+
+## Installation
+
+You can install the package via composer:
+
+```bash
+composer require spiral/app-logger
+```
+
+## Usage
+
+Such a configuration would be quite feasible to run:
+
+```yaml
+version: '2.7'
+
+rpc:
+  listen: tcp://127.0.0.1:6001
+```
+
+Then you need to create an instance of `Spiral\RoadRunner\Logger\Logger`
+
+```PHP
+use Spiral\Goridge\RPC\RPC;
+use RoadRunner\Logger\Logger;
+
+$rpc = RPC::create('tcp://127.0.0.1:6001');
+// or
+$rpc = RPC::fromGlobals();
+// or
+$rpc = RPC::fromEnvironment(new \Spiral\RoadRunner\Environment([
+    'RR_RPC' => 'tcp://127.0.0.1:6001'
+]));
+
+$logger = new Logger($rpc);
+```
+
+## Available methods
+```PHP
+$logger->debug('Test message');
+
+$logger->error('Test message');
+
+$logger->log("Test message \n");
+
+$logger->info('Test message');
+
+$logger->warning('Test message');
+```
