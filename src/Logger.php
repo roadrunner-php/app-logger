@@ -13,7 +13,7 @@ final class Logger
 
     public function __construct(RPCInterface $rpc)
     {
-        $this->rpc = $rpc->withServicePrefix('app-logger');
+        $this->rpc = $rpc->withServicePrefix('app');
     }
 
     public function error(string $message): void

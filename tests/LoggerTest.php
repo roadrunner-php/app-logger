@@ -24,7 +24,7 @@ final class LoggerTest extends TestCase
         $this->rpc
             ->shouldReceive('withServicePrefix')
             ->once()
-            ->with('app-logger')
+            ->with('app')
             ->andReturnSelf();
 
         $this->logger = new Logger($this->rpc);
