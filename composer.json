@@ -1,5 +1,5 @@
 {
-    "name": "roadrunner-php/logger",
+    "name": "roadrunner-php/app-logger",
     "type": "library",
     "description": "Send log messages to RoadRunner",
     "license": "MIT",
