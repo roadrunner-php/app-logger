@@ -43,20 +43,15 @@ $logger = new Logger($rpc);
 ```
 
 ## Available methods
-
+```debug```, ```error```, ```info```, ```warning``` is RoadRunner logger, and ```log``` is stderr
 ```PHP
-// RR logger
 $logger->debug('Debug message');
 
-// RR logger
 $logger->error('Error message');
 
-// stderr
 $logger->log("Log message \n");
 
-// RR logger
 $logger->info('Info message');
 
-// RR logger
 $logger->warning('Warning message');
 ```
