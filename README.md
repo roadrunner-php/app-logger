@@ -11,7 +11,7 @@ Make sure that your server is configured with following PHP version and extensio
 You can install the package via composer:
 
 ```bash
-composer require spiral/app-logger
+composer require roadrunner-php/app-logger
 ```
 
 ## Usage
@@ -25,7 +25,7 @@ rpc:
   listen: tcp://127.0.0.1:6001
 ```
 
-Then you need to create an instance of `Spiral\RoadRunner\Logger\Logger`
+Then you need to create an instance of `RoadRunner\Logger\Logger`
 
 ```PHP
 use Spiral\Goridge\RPC\RPC;
@@ -43,14 +43,20 @@ $logger = new Logger($rpc);
 ```
 
 ## Available methods
+
 ```PHP
-$logger->debug('Test message');
+// RR logger
+$logger->debug('Debug message');
 
-$logger->error('Test message');
+// RR logger
+$logger->error('Error message');
 
-$logger->log("Test message \n");
+// stderr
+$logger->log("Log message \n");
 
-$logger->info('Test message');
+// RR logger
+$logger->info('Info message');
 
-$logger->warning('Test message');
+// RR logger
+$logger->warning('Warning message');
 ```
