@@ -1,5 +1,13 @@
 # Package for sending log messages to RoadRunner
 
+
+[![PHP Version Require](https://poser.pugx.org/roadrunner-php/app-logger/require/php)](https://packagist.org/packages/roadrunner-php/app-logger)
+[![Latest Stable Version](https://poser.pugx.org/roadrunner-php/app-logger/v/stable)](https://packagist.org/packages/roadrunner-php/app-logger)
+[![phpunit](https://github.com/roadrunner-php/app-logger/actions/workflows/phpunit.yml/badge.svg)](https://github.com/roadrunner-php/app-logger/actions)
+[![psalm](https://github.com/roadrunner-php/app-logger/actions/workflows/psalm.yml/badge.svg)](https://github.com/roadrunner-php/app-logger/actions)
+[![Codecov](https://codecov.io/gh/roadrunner-php/app-logger/branch/master/graph/badge.svg)](https://codecov.io/gh/roadrunner-php/app-logger/)
+[![Total Downloads](https://poser.pugx.org/roadrunner-php/app-logger/downloads)](https://packagist.org/packages/roadrunner-php/app-logger)
+
 ## Requirements
 
 Make sure that your server is configured with following PHP version and extensions:
