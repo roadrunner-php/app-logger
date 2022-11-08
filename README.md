@@ -31,6 +31,11 @@ version: '2.7'
 
 rpc:
   listen: tcp://127.0.0.1:6001
+
+logs:
+  channels:
+    app:
+      level: info
 ```
 
 Then you need to create an instance of `RoadRunner\Logger\Logger`
