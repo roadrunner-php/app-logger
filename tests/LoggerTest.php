@@ -47,7 +47,7 @@ final class LoggerTest extends TestCase
     public function testIfErrorCallFailedThrowAnException(): void
     {
         $this->expectException(LoggerException::class);
-        $this->expectErrorMessage('Something went wrong');
+        $this->expectExceptionMessage('Something went wrong');
 
         $this->rpc
             ->shouldReceive('call')
@@ -74,7 +74,7 @@ final class LoggerTest extends TestCase
     public function testIfWarningCallFailedThrowAnException(): void
     {
         $this->expectException(LoggerException::class);
-        $this->expectErrorMessage('Something went wrong');
+        $this->expectExceptionMessage('Something went wrong');
 
         $this->rpc
             ->shouldReceive('call')
@@ -101,7 +101,7 @@ final class LoggerTest extends TestCase
     public function testIfInfoCallFailedThrowAnException(): void
     {
         $this->expectException(LoggerException::class);
-        $this->expectErrorMessage('Something went wrong');
+        $this->expectExceptionMessage('Something went wrong');
 
         $this->rpc
             ->shouldReceive('call')
@@ -128,7 +128,7 @@ final class LoggerTest extends TestCase
     public function testIfDebugCallFailedThrowAnException(): void
     {
         $this->expectException(LoggerException::class);
-        $this->expectErrorMessage('Something went wrong');
+        $this->expectExceptionMessage('Something went wrong');
 
         $this->rpc
             ->shouldReceive('call')
@@ -155,7 +155,7 @@ final class LoggerTest extends TestCase
     public function testIfLogCallFailedThrowAnException(): void
     {
         $this->expectException(LoggerException::class);
-        $this->expectErrorMessage('Something went wrong');
+        $this->expectExceptionMessage('Something went wrong');
 
         $this->rpc
             ->shouldReceive('call')
