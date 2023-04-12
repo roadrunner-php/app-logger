@@ -9,7 +9,7 @@ use Spiral\Goridge\RPC\RPCInterface;
 
 final class Logger
 {
-    private RPCInterface $rpc;
+    private readonly RPCInterface $rpc;
 
     public function __construct(RPCInterface $rpc)
     {
@@ -62,10 +62,9 @@ final class Logger
     }
 
     /**
-     * @param ServiceException $e
      * @throws Exception\LoggerException
      */
-    private function handleError(ServiceException $e): void
+    private function handleError(ServiceException $e): never
     {
         $message = \str_replace(["\t", "\n"], ' ', $e->getMessage());
 
