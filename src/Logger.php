@@ -4,58 +4,114 @@ declare(strict_types=1);
 
 namespace RoadRunner\Logger;
 
+use RoadRunner\AppLogger\DTO\V1\LogAttrs;
+use RoadRunner\AppLogger\DTO\V1\LogEntry;
+use RoadRunner\Logger\Exception\LoggerException;
+use Spiral\Goridge\RPC\Codec\ProtobufCodec;
+use Spiral\Goridge\RPC\CodecInterface;
 use Spiral\Goridge\RPC\Exception\ServiceException;
 use Spiral\Goridge\RPC\RPCInterface;
 
+/**
+ * @psalm-type TMessage = string|\Stringable
+ * @psalm-type TContext = array<string, mixed>
+ */
 final class Logger
 {
     private readonly RPCInterface $rpc;
+    private readonly CodecInterface $codec;
 
     public function __construct(RPCInterface $rpc)
     {
         $this->rpc = $rpc->withServicePrefix('app');
+        $this->codec = new ProtobufCodec();
     }
 
-    public function error(string $message): void
+    /**
+     * Log an emergency message to the logs.
+     *
+     * @param TMessage $message
+     * @param TContext $context
+     */
+    public function error(string|\Stringable $message, array $context = []): void
     {
-        try {
-            $this->rpc->call('Error', $message);
-        } catch (ServiceException $e) {
-            $this->handleError($e);
-        }
+        $this->send(LogLevel::Error, $message, $context);
     }
 
-    public function warning(string $message): void
+    /**
+     * Log a warning message to the logs.
+     *
+     * @param TMessage $message
+     * @param TContext $context
+     */
+    public function warning(string|\Stringable $message, array $context = []): void
     {
-        try {
-            $this->rpc->call('Warning', $message);
-        } catch (ServiceException $e) {
-            $this->handleError($e);
-        }
+        $this->send(LogLevel::Warning, $message, $context);
     }
 
-    public function info(string $message): void
+    /**
+     * Log an informational message to the logs.
+     *
+     * @param TMessage $message
+     * @param TContext $context
+     */
+    public function info(string $message, array $context = []): void
     {
-        try {
-            $this->rpc->call('Info', $message);
-        } catch (ServiceException $e) {
-            $this->handleError($e);
-        }
+        $this->send(LogLevel::Info, $message, $context);
     }
 
-    public function debug(string $message): void
+    /**
+     * Log a debug message to the logs.
+     *
+     * @param TMessage $message
+     * @param TContext $context
+     */
+    public function debug(string|\Stringable $message, array $context = []): void
     {
-        try {
-            $this->rpc->call('Debug', $message);
-        } catch (ServiceException $e) {
-            $this->handleError($e);
-        }
+        $this->send(LogLevel::Debug, $message, $context);
     }
 
-    public function log(string $message): void
+    /**
+     * Log a message to the logs.
+     *
+     * @param TMessage $message
+     * @param TContext $context
+     */
+    public function log(string|\Stringable $message, array $context = []): void
+    {
+        $this->send(LogLevel::Log, $message, $context);
+    }
+
+    /**
+     * @param TContext $context
+     * @throws LoggerException
+     */
+    private function send(LogLevel $level, string|\Stringable $message, array $context = []): void
     {
         try {
-            $this->rpc->call('Log', $message);
+            if ($context === []) {
+                $this->rpc->call($level->name, (string)$message);
+            } else {
+                $attrs = [];
+
+                foreach ($context as $key => $value) {
+                    $attrs[] = new LogAttrs(data: [
+                        'key' => $key,
+                        'value' => \is_string($value) ? $value : \json_encode($value),
+                    ]);
+                }
+
+                $level = $level->name . 'WithContext';
+                $this->rpc
+                    ->withCodec($this->codec)
+                    ->call(
+                        $level,
+                        new LogEntry([
+                            'message' => (string)$message,
+                            'log_attrs' => $attrs,
+                        ]),
+                    );
+            }
         } catch (ServiceException $e) {
             $this->handleError($e);
         }
@@ -68,6 +124,6 @@ final class Logger
     {
         $message = \str_replace(["\t", "\n"], ' ', $e->getMessage());
 
-        throw new Exception\LoggerException($message, (int)$e->getCode(), $e);
+        throw new Exception\LoggerException($message, $e->getCode(), $e);
     }
 }
