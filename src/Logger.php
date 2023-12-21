@@ -132,7 +132,7 @@ final class Logger
     }
 
     /**
-     * @throws \JsonException
+     * @throws \Throwable
      */
     private function prepareValue(mixed $value): string
     {
