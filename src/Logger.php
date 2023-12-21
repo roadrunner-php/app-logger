@@ -95,10 +95,14 @@ final class Logger
                 $attrs = [];
 
                 foreach ($context as $key => $value) {
-                    $attrs[] = new LogAttrs(data: [
-                        'key' => $key,
-                        'value' => \is_string($value) ? $value : \json_encode($value),
-                    ]);
+                    try {
+                        $attrs[] = new LogAttrs(data: [
+                            'key' => $key,
+                            'value' => $this->prepareValue($value),
+                        ]);
+                    } catch (\JsonException) {
+                        // We can't log this value, so we just skip it.
+                    }
                 }
 
                 $level = $level->name . 'WithContext';
@@ -125,5 +129,21 @@ final class Logger
         $message = \str_replace(["\t", "\n"], ' ', $e->getMessage());
 
         throw new Exception\LoggerException($message, $e->getCode(), $e);
+    }
+
+    /**
+     * @throws \JsonException
+     */
+    private function prepareValue(mixed $value): string
+    {
+        if (\is_string($value)) {
+            return $value;
+        }
+
+        if ($value instanceof \Stringable) {
+            return (string)$value;
+        }
+
+        return \json_encode($value, JSON_THROW_ON_ERROR);
     }
 }
