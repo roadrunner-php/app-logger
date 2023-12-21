@@ -100,7 +100,7 @@ final class Logger
                             'key' => $key,
                             'value' => $this->prepareValue($value),
                         ]);
-                    } catch (\JsonException) {
+                    } catch (\Throwable) {
                         // We can't log this value, so we just skip it.
                     }
                 }
