@@ -16,6 +16,7 @@ Thumbs.db
 .phpunit.result.cache
 .phpunit.cache/
 .php_cs.cache
+runtime/
 clover.xml
 .env
 builds
