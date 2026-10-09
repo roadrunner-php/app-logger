@@ -94,6 +94,7 @@ final class Logger
             } else {
                 $attrs = [];
 
+                /** @var mixed $value */
                 foreach ($context as $key => $value) {
                     try {
                         $attrs[] = new LogAttrs(data: [
