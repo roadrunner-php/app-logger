@@ -13,8 +13,7 @@ final class RpcMock
 {
     public function __construct(
         private readonly MockInterface $mock,
-    ) {
-    }
+    ) {}
 
     public function assertDefinedCodec(string $codec, int $times = 1): self
     {
