@@ -16,17 +16,6 @@ final class LoggerTest extends TestCase
     private Logger $logger;
     private RpcMock $rpc;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->rpc = new RpcMock($rpc = m::mock(RPCInterface::class));
-
-        $this->rpc->assertServicePrefix('app');
-
-        $this->logger = new Logger($rpc);
-    }
-
     /**
      * @doesNotPerformAssertions
      */
@@ -200,5 +189,16 @@ final class LoggerTest extends TestCase
 
         $this->rpc->callShouldThrowException(new LoggerException('Something went wrong'));
         $this->logger->log('foo');
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->rpc = new RpcMock($rpc = m::mock(RPCInterface::class));
+
+        $this->rpc->assertServicePrefix('app');
+
+        $this->logger = new Logger($rpc);
     }
 }

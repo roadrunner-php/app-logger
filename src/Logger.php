@@ -90,7 +90,7 @@ final class Logger
     {
         try {
             if ($context === []) {
-                $this->rpc->call($level->name, (string)$message);
+                $this->rpc->call($level->name, (string) $message);
             } else {
                 $attrs = [];
 
@@ -111,7 +111,7 @@ final class Logger
                     ->call(
                         $level,
                         new LogEntry([
-                            'message' => (string)$message,
+                            'message' => (string) $message,
                             'log_attrs' => $attrs,
                         ]),
                     );
@@ -141,7 +141,7 @@ final class Logger
         }
 
         if ($value instanceof \Stringable) {
-            return (string)$value;
+            return (string) $value;
         }
 
         return \json_encode($value, JSON_THROW_ON_ERROR);
