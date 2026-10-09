@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace RoadRunner\Logger\Tests;
 
 use Mockery\MockInterface;
-use PHPUnit\Framework\Assert;
 use RoadRunner\AppLogger\DTO\V1\LogEntry;
 use RoadRunner\Logger\LogLevel;
+use Testo\Assert;
 
 final class RpcMock
 {
@@ -66,7 +66,7 @@ final class RpcMock
             ->with(
                 $level->name . 'WithContext',
                 \Mockery::on(function (LogEntry $logEntry) use ($message): bool {
-                    Assert::assertSame($logEntry->serializeToJsonString(), \json_encode($message));
+                    Assert::same($logEntry->serializeToJsonString(), \json_encode($message));
                     return true;
                 }),
             )
