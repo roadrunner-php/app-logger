@@ -1,7 +1,8 @@
 on:
   push:
     branches:
-      - master
+      - 1.x
+  pull_request: ~
 
 name: static analysis
 
