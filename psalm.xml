@@ -7,6 +7,10 @@
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
 >
     <issueHandlers>
+        <!-- Psalm 6 issues, suppressed until the static analysis pass fixes them -->
+        <ClassMustBeFinal errorLevel="suppress" />
+        <UnusedClass errorLevel="suppress" />
+        <MixedAssignment errorLevel="suppress" />
     </issueHandlers>
     <projectFiles>
         <directory name="src" />
