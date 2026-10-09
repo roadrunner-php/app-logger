@@ -26,6 +26,7 @@ final class LoggerTest
     {
         yield 'string' => ['bar', 'bar'];
         yield 'stringable' => [new class implements \Stringable {
+            #[\Override]
             public function __toString(): string
             {
                 return 'stringable';
@@ -243,6 +244,7 @@ final class LoggerTest
         $this->rpc->assertCalled(LogLevel::Error, 'stringable');
 
         $this->logger->error(new class implements \Stringable {
+            #[\Override]
             public function __toString(): string
             {
                 return 'stringable';
@@ -262,6 +264,7 @@ final class LoggerTest
             ]);
 
         $this->logger->log(new class implements \Stringable {
+            #[\Override]
             public function __toString(): string
             {
                 return 'stringable';
