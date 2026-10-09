@@ -10,15 +10,16 @@ use RoadRunner\Logger\Exception\LoggerException;
 use RoadRunner\Logger\LogLevel;
 use Spiral\Goridge\RPC\Codec\ProtobufCodec;
 use Spiral\Goridge\RPC\RPCInterface;
+use Testo\Expect;
+use Testo\Lifecycle\BeforeTest;
+use Testo\Test;
 
-final class LoggerTest extends TestCase
+#[Test]
+final class LoggerTest
 {
     private Logger $logger;
     private RpcMock $rpc;
 
-    /**
-     * @doesNotPerformAssertions
-     */
     public function testErrorCall(): void
     {
         $this->rpc->assertCalled(LogLevel::Error, 'foo');
@@ -44,16 +45,12 @@ final class LoggerTest extends TestCase
 
     public function testIfErrorCallFailedThrowAnException(): void
     {
-        $this->expectException(LoggerException::class);
-        $this->expectExceptionMessage('Something went wrong');
+        Expect::exception(LoggerException::class)->withMessageContaining('Something went wrong');
 
         $this->rpc->callShouldThrowException(new LoggerException('Something went wrong'));
         $this->logger->error('foo');
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
     public function testWarningCall(): void
     {
         $this->rpc->assertCalled(LogLevel::Warning, 'foo');
@@ -79,16 +76,12 @@ final class LoggerTest extends TestCase
 
     public function testIfWarningCallFailedThrowAnException(): void
     {
-        $this->expectException(LoggerException::class);
-        $this->expectExceptionMessage('Something went wrong');
+        Expect::exception(LoggerException::class)->withMessageContaining('Something went wrong');
 
         $this->rpc->callShouldThrowException(new LoggerException('Something went wrong'));
         $this->logger->warning('foo');
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
     public function testInfoCall(): void
     {
         $this->rpc->assertCalled(LogLevel::Info, 'foo');
@@ -114,16 +107,12 @@ final class LoggerTest extends TestCase
 
     public function testIfInfoCallFailedThrowAnException(): void
     {
-        $this->expectException(LoggerException::class);
-        $this->expectExceptionMessage('Something went wrong');
+        Expect::exception(LoggerException::class)->withMessageContaining('Something went wrong');
 
         $this->rpc->callShouldThrowException(new LoggerException('Something went wrong'));
         $this->logger->info('foo');
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
     public function testDebugCall(): void
     {
         $this->rpc->assertCalled(LogLevel::Debug, 'foo');
@@ -149,16 +138,12 @@ final class LoggerTest extends TestCase
 
     public function testIfDebugCallFailedThrowAnException(): void
     {
-        $this->expectException(LoggerException::class);
-        $this->expectExceptionMessage('Something went wrong');
+        Expect::exception(LoggerException::class)->withMessageContaining('Something went wrong');
 
         $this->rpc->callShouldThrowException(new LoggerException('Something went wrong'));
         $this->logger->debug('foo');
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
     public function testLogCall(): void
     {
         $this->rpc->assertCalled(LogLevel::Log, 'foo');
@@ -184,17 +169,15 @@ final class LoggerTest extends TestCase
 
     public function testIfLogCallFailedThrowAnException(): void
     {
-        $this->expectException(LoggerException::class);
-        $this->expectExceptionMessage('Something went wrong');
+        Expect::exception(LoggerException::class)->withMessageContaining('Something went wrong');
 
         $this->rpc->callShouldThrowException(new LoggerException('Something went wrong'));
         $this->logger->log('foo');
     }
 
+    #[BeforeTest]
     protected function setUp(): void
     {
-        parent::setUp();
-
         $this->rpc = new RpcMock($rpc = m::mock(RPCInterface::class));
 
         $this->rpc->assertServicePrefix('app');

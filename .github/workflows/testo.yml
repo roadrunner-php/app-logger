@@ -1,0 +1,14 @@
+on:
+  push:
+    branches:
+      - 1.x
+  pull_request: ~
+
+name: testo
+
+jobs:
+  testo:
+    uses: spiral/gh-actions/.github/workflows/testo.yml@master
+    with:
+      os: >-
+        ['ubuntu-latest']
