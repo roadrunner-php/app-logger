@@ -1,29 +1,44 @@
 {
-    "name": "roadrunner-php/app-logger",
+    "name": "roadrunner/app-logger",
     "type": "library",
-    "description": "Send log messages to RoadRunner",
+    "description": "Send log messages from PHP workers to the RoadRunner app logger plugin over RPC",
+    "keywords": [
+        "roadrunner",
+        "logger",
+        "logging",
+        "app-logger",
+        "rpc"
+    ],
     "license": "MIT",
     "authors": [
         {
-            "name": "Kirill Astakhov (kastahov)",
-            "email": "kirill.astakhov@spiralscout.com"
+            "name": "Kirill Astakhov",
+            "homepage": "https://github.com/kastahov"
         },
         {
             "name": "RoadRunner Community",
-            "homepage": "https://github.com/spiral/roadrunner/graphs/contributors"
+            "homepage": "https://github.com/roadrunner-server/roadrunner/graphs/contributors"
+        }
+    ],
+    "homepage": "https://roadrunner.dev/",
+    "support": {
+        "docs": "https://docs.roadrunner.dev/docs/logging-and-observability/applogger",
+        "issues": "https://github.com/roadrunner-server/roadrunner/issues",
+        "source": "https://github.com/roadrunner-php/app-logger",
+        "chat": "https://discord.gg/V6EK4he"
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/roadrunner-server"
         }
     ],
     "require": {
         "php": ">=8.2",
         "ext-json": "*",
-        "roadrunner-php/roadrunner-api-dto": "^1.18 || ^2.0",
-        "spiral/goridge": "^4.3",
+        "roadrunner/api-dto": "^2.1",
+        "roadrunner/goridge": "^4.5",
         "spiral/roadrunner": "^3.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "RoadRunner\\Logger\\": "src"
-        }
     },
     "require-dev": {
         "mockery/mockery": "^1.5",
@@ -31,6 +46,14 @@
         "testo/bridge-mockery": "^0.1.2",
         "testo/testo": "^0.10.55",
         "vimeo/psalm": "^6 || ^7"
+    },
+    "replace": {
+        "roadrunner-php/app-logger": "self.version"
+    },
+    "autoload": {
+        "psr-4": {
+            "RoadRunner\\Logger\\": "src"
+        }
     },
     "autoload-dev": {
         "psr-4": {

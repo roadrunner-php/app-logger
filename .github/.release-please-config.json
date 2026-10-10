@@ -3,7 +3,7 @@
     "release-type": "php",
     "packages": {
         ".": {
-            "package-name": "roadrunner-php/app-logger",
+            "package-name": "roadrunner/app-logger",
             "changelog-path": "/CHANGELOG.md"
         }
     },
