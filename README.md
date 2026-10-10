@@ -27,13 +27,13 @@ A PHP client for the RoadRunner [app-logger plugin](https://docs.roadrunner.dev/
 ### Installation
 
 ```bash
-composer require roadrunner-php/app-logger
+composer require roadrunner/app-logger
 ```
 
-[![PHP](https://img.shields.io/packagist/php-v/roadrunner-php/app-logger.svg?style=flat-square&logo=php)](https://packagist.org/packages/roadrunner-php/app-logger)
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/roadrunner-php/app-logger.svg?style=flat-square&logo=packagist)](https://packagist.org/packages/roadrunner-php/app-logger)
-[![License](https://img.shields.io/packagist/l/roadrunner-php/app-logger.svg?style=flat-square)](LICENSE)
-[![Total Downloads](https://img.shields.io/packagist/dt/roadrunner-php/app-logger.svg?style=flat-square)](https://packagist.org/packages/roadrunner-php/app-logger/stats)
+[![PHP](https://img.shields.io/packagist/php-v/roadrunner/app-logger.svg?style=flat-square&logo=php)](https://packagist.org/packages/roadrunner/app-logger)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/roadrunner/app-logger.svg?style=flat-square&logo=packagist)](https://packagist.org/packages/roadrunner/app-logger)
+[![License](https://img.shields.io/packagist/l/roadrunner/app-logger.svg?style=flat-square)](LICENSE)
+[![Total Downloads](https://img.shields.io/packagist/dt/roadrunner/app-logger.svg?style=flat-square)](https://packagist.org/packages/roadrunner/app-logger/stats)
 
 ### Configuration
 
@@ -59,7 +59,7 @@ use Spiral\RoadRunner\Environment;
 use RoadRunner\Logger\Logger;
 
 $rpc = RPC::create('tcp://127.0.0.1:6001');
-// or, inside a RoadRunner worker (requires spiral/roadrunner-worker)
+// or, inside a RoadRunner worker (requires roadrunner/worker)
 $rpc = RPC::create(Environment::fromGlobals()->getRPCAddress());
 
 $logger = new Logger($rpc);
