@@ -123,13 +123,13 @@ final class Logger
     }
 
     /**
-     * @throws Exception\LoggerException
+     * @throws LoggerException
      */
     private function handleError(ServiceException $e): never
     {
         $message = \str_replace(["\t", "\n"], ' ', $e->getMessage());
 
-        throw new Exception\LoggerException($message, $e->getCode(), $e);
+        throw new LoggerException($message, $e->getCode(), $e);
     }
 
     /**

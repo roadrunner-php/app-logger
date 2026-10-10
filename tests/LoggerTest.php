@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace RoadRunner\Logger\Tests;
 
 use Mockery as m;
-use RoadRunner\Logger\Logger;
 use RoadRunner\Logger\Exception\LoggerException;
+use RoadRunner\Logger\Logger;
 use RoadRunner\Logger\LogLevel;
 use Spiral\Goridge\RPC\Codec\ProtobufCodec;
 use Spiral\Goridge\RPC\Exception\ServiceException;
