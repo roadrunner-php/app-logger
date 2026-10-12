@@ -12,3 +12,5 @@ jobs:
     with:
       os: >-
         ['ubuntu-latest']
+      codecov: true
+    secrets: inherit
