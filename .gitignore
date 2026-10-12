@@ -1,23 +1,7 @@
-# IDEA
-.idea/
-*.iml
-
-# Composer
-composer.phar
-vendor/
-composer.lock
-
-# OS
-.DS_Store
-Thumbs.db
-*.exe
-
-# Other
-.php_cs.cache
-runtime/
-clover.xml
-.env
-builds
-
-# Agent skills installed by Composer plugins
-.agents/
+/.*/
+!/.github/
+/runtime/
+/vendor/
+/composer.lock
+/.env
+*.log
