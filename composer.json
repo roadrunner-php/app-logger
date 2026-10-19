@@ -38,7 +38,7 @@
         "ext-json": "*",
         "roadrunner/api-dto": "^2.1",
         "roadrunner/goridge": "^4.5",
-        "spiral/roadrunner": "^3.0"
+        "roadrunner/roadrunner": "^3.0"
     },
     "require-dev": {
         "llm/skills": "^1.14",
