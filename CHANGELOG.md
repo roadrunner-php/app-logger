@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/roadrunner-php/app-logger/compare/1.3.0...1.3.1) (2026-10-19)
+
+
+### Bug Fixes
+
+* require roadrunner/roadrunner instead of spiral/roadrunner ([83cf5eb](https://github.com/roadrunner-php/app-logger/commit/83cf5ebc598fddbc15c3c05cff0612e9b8908258))
+
 ## [1.3.0](https://github.com/roadrunner-php/app-logger/compare/1.2.0...1.3.0) (2026-10-10)
 
 
