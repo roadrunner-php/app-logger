@@ -38,6 +38,7 @@ final class LoggerTest
         yield 'null' => [null, 'null'];
         yield 'list' => [[1, 'two'], '[1,"two"]'];
         yield 'map' => [['a' => ['b' => 1]], '{"a":{"b":1}}'];
+        yield 'slashes and unicode' => [['path' => '/var/log', 'name' => 'Дорога'], '{"path":"/var/log","name":"Дорога"}'];
     }
 
     public function testErrorCall(): void

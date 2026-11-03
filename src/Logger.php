@@ -145,6 +145,6 @@ final class Logger
             return (string) $value;
         }
 
-        return \json_encode($value, JSON_THROW_ON_ERROR);
+        return \json_encode($value, \JSON_THROW_ON_ERROR | \JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE);
     }
 }
