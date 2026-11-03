@@ -66,7 +66,13 @@ final class RpcMock
             ->with(
                 $level->name . 'WithContext',
                 \Mockery::on(function (LogEntry $logEntry) use ($message): bool {
-                    Assert::same($logEntry->serializeToJsonString(), \json_encode($message));
+                    // Not via serializeToJsonString(): its escaping of `/` differs between protobuf builds
+                    $attributes = [];
+                    foreach ($logEntry->getLogAttrs() as $attr) {
+                        $attributes[] = ['key' => $attr->getKey(), 'value' => $attr->getValue()];
+                    }
+
+                    Assert::same(['message' => $logEntry->getMessage(), 'logAttrs' => $attributes], $message);
                     return true;
                 }),
             )
