@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.2](https://github.com/roadrunner-php/app-logger/compare/1.3.1...1.3.2) (2026-11-03)
+
+
+### Bug Fixes
+
+* send arrays and objects as JSON without escaped slashes and unicode ([#20](https://github.com/roadrunner-php/app-logger/issues/20)) ([85087ab](https://github.com/roadrunner-php/app-logger/commit/85087abfb65adce815060ddbc3f36946e9a0624d))
+
 ## [1.3.1](https://github.com/roadrunner-php/app-logger/compare/1.3.0...1.3.1) (2026-10-19)
 
 
